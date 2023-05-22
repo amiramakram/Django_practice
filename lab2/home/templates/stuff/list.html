@@ -1,0 +1,31 @@
+{%extends 'home.html'%}
+
+{% block content %}
+<div class="container">
+    <h1>Supervisors</h1>
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supervisor Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supervisor in stuffs %}
+            <tr>
+                <td>{{ supervisor.id }}</td>
+                <td>{{ supervisor.name }}</td>
+                <td>
+                    <a href="{%url 'stuff:superedit' supervisor.id%}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{%url 'stuff:superdelete' supervisor.id%}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{%url 'stuff:insert' %}" class="btn btn-primary">Add New Supervisor</a>
+</div>
+{% endblock %}
