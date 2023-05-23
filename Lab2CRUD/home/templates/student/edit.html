@@ -1,0 +1,31 @@
+{%extends 'home.html'%}
+
+
+{% block content %}
+  <div class="container">
+    <h1>Edit Student</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="studentname">Student Name</label>
+        <input type="hidden" name="id" value="{{student.id}}">
+        <input type="text" class="form-control" id="studentname" name="studentname" required value="{{student.name}}">
+      </div>
+      <div class="form-group">
+        <label for="trackname">Track Name</label>
+        <input type="text" class="form-control" id="trackname" name="trackname" required value="{{student.track}}">
+      </div>
+      <div class="form-group">
+        <label for="stuffid">Supervisor</label>
+        <select name="stuffid" class="form-control">
+          {% for supervisor in stuff %}
+          <option value="{{supervisor.id}}">{{supervisor.name}}</option>
+          {%endfor%}
+        </select>                 
+      </div>
+    
+      <br>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+{% endblock %}
